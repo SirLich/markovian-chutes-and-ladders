@@ -3,6 +3,19 @@ import sys
 from sympy import *
 import json
 
+def main():
+    while(true):
+        args = input("Please enter a command: ").split(' ')
+        command = args[0].lower()
+        print("")
+        if(command == "help"):
+            runHelp(args)
+        elif(command == "create_stochastic" or command == "cstoch"):
+            create_stochastic(args[1])
+
+def runHelp(args):
+    print("This is the help GUI!")
+
 def create_stochastic(filename):
     with open(filename) as jsonfile:
         config = json.load(jsonfile)
@@ -33,4 +46,5 @@ def create_stochastic(filename):
                 board[current_row,col] += chance
     pprint(board)
     return board
-create_stochastic(sys.argv[1])
+
+main()

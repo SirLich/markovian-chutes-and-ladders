@@ -1,7 +1,22 @@
+#!/usr/bin/python3
+
 from sympy import pprint
 import sys
 from sympy import *
 import json
+
+args = sys.argv
+
+commands = {
+    'help': [
+        "help",
+        "h"
+    ],
+    'create_stochastic': [
+        "create_stochastic",
+        "cstoch"
+    ]
+}
 
 def main():
     while(true):
@@ -12,9 +27,6 @@ def main():
             runHelp(args)
         elif(command == "create_stochastic" or command == "cstoch"):
             create_stochastic(args[1])
-
-def runHelp(args):
-    print("This is the help GUI!")
 
 def create_stochastic(filename):
     with open(filename) as jsonfile:
@@ -47,4 +59,4 @@ def create_stochastic(filename):
     pprint(board)
     return board
 
-main()
+a = create_stochastic(args[1])

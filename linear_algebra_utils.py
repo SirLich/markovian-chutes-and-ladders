@@ -56,7 +56,31 @@ def create_stochastic(filename):
                 board[paths[str(current_row)],col] += chance
             else:
                 board[current_row,col] += chance
-    pprint(board)
+    #pprint(board)
+
+    #pprint(latex(board))
+
+    runMarkov(board,board[:,0], 50)
+
+    #starting = Matrix([Rational(1/3), 0, Rational(1/8), 0, 0, 0, Rational(3/8), 0, Rational(1/6),0])
+
+    #starting = Matrix([1/3, 0, 1/8, 0, 0, 0, 3/8, 0, 1/6,0])
+
+
+
+    #runMarkov(board,starting, 1)
+
+
+
     return board
+
+def runMarkov(matrix, vector, runs):
+    print("Iteration:",runs)
+    new_vector = matrix*vector
+    pprint(new_vector)
+    print("")
+    if(runs == 1):
+        return new_vector
+    return runMarkov(matrix, new_vector, runs -1)
 
 a = create_stochastic(args[1])
